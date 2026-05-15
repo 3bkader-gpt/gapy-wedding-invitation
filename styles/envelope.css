@@ -804,7 +804,52 @@
 
 @media (max-width: 340px) {
     .envelope-wrapper {
-        transform: scale(0.9);
+        transform: scale(0.85);
         transform-origin: center center;
+    }
+
+    .envelope-hint {
+        font-size: 0.85rem;
+        padding: 0 0.75rem;
+    }
+
+    .envelope-welcome {
+        font-size: clamp(1.5rem, 5vw, 2rem);
+        padding: 0.75rem;
+    }
+
+    .envelope-instruction {
+        top: calc(50% + 3.5rem);
+    }
+
+    .instruction-arrow {
+        font-size: 1.25rem;
+    }
+
+    .instruction-text {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 374px) {
+    :root {
+        --space-page: 0.75rem;
+    }
+
+    .envelope-stage {
+        padding: 0.5rem 0.75rem 1.5rem;
+    }
+
+    .envelope-wrapper {
+        transform: scale(0.8);
+    }
+
+    .envelope-dom-root {
+        width: min(340px, 90vw);
+    }
+
+    .envelope-canvas-host {
+        width: min(340px, 90vw);
+        height: min(280px, 45vh);
     }
 }
