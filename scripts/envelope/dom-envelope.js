@@ -17,9 +17,9 @@ export function createDomEnvelope({
 
     async function init() {
         const t = envelopeConfig.timings ?? {};
-        const flapMs = typeof t.flapOpen === 'number' ? t.flapOpen : 1400;
-        const cardDelayMs = typeof t.cardRevealDelay === 'number' ? t.cardRevealDelay : 320;
-        const cardDurMs = typeof t.cardRevealDuration === 'number' ? t.cardRevealDuration : 2200;
+        const flapMs = typeof t.flapOpen === 'number' ? t.flapOpen : 1200;
+        const cardDelayMs = typeof t.cardRevealDelay === 'number' ? t.cardRevealDelay : 250;
+        const cardDurMs = typeof t.cardRevealDuration === 'number' ? t.cardRevealDuration : 2400;
         wrapper?.style.setProperty('--env-flap-ms', `${flapMs}ms`);
         wrapper?.style.setProperty('--env-card-delay-ms', `${cardDelayMs}ms`);
         wrapper?.style.setProperty('--env-card-duration-ms', `${cardDurMs}ms`);

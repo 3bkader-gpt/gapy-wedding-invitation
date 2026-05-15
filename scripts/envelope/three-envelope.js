@@ -18,6 +18,16 @@ function easeOutExpo(t) {
     return t >= 1 ? 1 : 1 - 2 ** (-10 * t);
 }
 
+function easeOutBack(t) {
+    const c1 = 1.70158;
+    const c3 = c1 + 1;
+    return 1 + c3 * (t - 1) ** 3 + c1 * (t - 1) ** 2;
+}
+
+function easeInOutQuart(t) {
+    return t < 0.5 ? 8 * t * t * t * t : 1 - (-2 * t + 2) ** 4 / 2;
+}
+
 async function loadFonts() {
     if (!document.fonts?.load) return;
     await Promise.all([
@@ -104,6 +114,12 @@ export function createThreeEnvelope({
     camera.position.set(0, 0.05, 5.2);
     camera.lookAt(0, -0.05, 0);
 
+    const cameraInitial = {
+        position: new THREE.Vector3(0, 0.05, 5.2),
+        lookAt: new THREE.Vector3(0, -0.05, 0),
+        fov: 42
+    };
+
     const renderer = new THREE.WebGLRenderer({
         canvas,
         antialias: true,
@@ -186,6 +202,19 @@ export function createThreeEnvelope({
     card.position.set(0, -0.08, 0.06);
     envelope.add(card);
 
+    // Particle trail for card reveal
+    const trailParticles = [];
+    const trailGeometry = new THREE.BufferGeometry();
+    const trailMaterial = new THREE.PointsMaterial({
+        color: COLORS.gold,
+        size: 0.04,
+        transparent: true,
+        opacity: 0.6,
+        blending: THREE.AdditiveBlending
+    });
+    const trailPoints = new THREE.Points(trailGeometry, trailMaterial);
+    envelope.add(trailPoints);
+
     const sealWorld = new THREE.Vector3(0, 0.42, 0.12);
 
     let visible = false;
@@ -194,12 +223,13 @@ export function createThreeEnvelope({
     let openResolve = null;
     let openStartTime = null;
     const clock = new THREE.Clock();
-    const openDuration = reducedMotion ? 0.35 : 2.4;
+    const openDuration = reducedMotion ? 0.35 : 2.8;
 
     const state = {
         idle: true,
         openT: 0,
-        shake: 0
+        shake: 0,
+        cameraLookAt: new THREE.Vector3(0, -0.05, 0)
     };
 
     function resize() {
@@ -266,17 +296,94 @@ export function createThreeEnvelope({
             root.rotation.z *= 0.92;
         }
 
-        const flapEase = easeInOutCubic(Math.min(1, ot / 0.5));
+        // Flap opening: smooth start, opens fully by 45% of animation
+        const flapEnd = 0.45;
+        const flapT = Math.min(1, ot / flapEnd);
+        const flapEase = easeInOutQuart(flapT);
         flapPivot.rotation.x = -flapEase * Math.PI * 0.95;
 
-        const cardStart = 0.32;
+        // Card reveal: starts at 25%, smooth overlap with flap
+        const cardStart = 0.25;
         const cardT = ot <= cardStart ? 0 : (ot - cardStart) / (1 - cardStart);
-        const cardEase = easeOutExpo(Math.min(1, cardT));
+        const cardEase = easeOutBack(Math.min(1, cardT));
 
-        card.position.y = -0.08 + cardEase * 1.65;
-        card.position.z = 0.06 + cardEase * 0.95;
-        card.rotation.x = -cardEase * 0.14;
-        card.scale.setScalar(1 + cardEase * 0.1);
+        // Card movement with improved trajectory
+        card.position.y = -0.08 + cardEase * 1.75;
+        card.position.z = 0.06 + cardEase * 1.05;
+        
+        // Card rotation for more dynamic reveal
+        const cardRotT = Math.min(1, cardT * 1.2);
+        card.rotation.x = -cardRotT * 0.18 + (1 - cardRotT) * 0.05;
+        card.rotation.z = Math.sin(cardT * Math.PI) * 0.08;
+        
+        // Card scale with slight overshoot
+        const scaleT = Math.min(1, cardT * 1.15);
+        card.scale.setScalar(1 + easeOutBack(scaleT) * 0.12);
+
+        // Particle trail effect during card reveal
+        if (cardT > 0.05 && cardT < 0.95 && !reducedMotion) {
+            if (Math.random() < 0.3) {
+                const worldPos = new THREE.Vector3();
+                card.getWorldPosition(worldPos);
+                trailParticles.push({
+                    pos: worldPos.clone(),
+                    life: 1.0,
+                    vel: new THREE.Vector3(
+                        (Math.random() - 0.5) * 0.02,
+                        (Math.random() - 0.5) * 0.02,
+                        (Math.random() - 0.5) * 0.02
+                    )
+                });
+            }
+        }
+
+        // Update trail particles
+        for (let i = trailParticles.length - 1; i >= 0; i--) {
+            const p = trailParticles[i];
+            p.life -= clock.getDelta() * 1.5;
+            p.pos.add(p.vel);
+            if (p.life <= 0) {
+                trailParticles.splice(i, 1);
+            }
+        }
+
+        // Update trail geometry (avoid stale vertices + GPU attribute churn)
+        if (trailParticles.length > 0) {
+            const positions = new Float32Array(trailParticles.length * 3);
+            trailParticles.forEach((p, i) => {
+                positions[i * 3] = p.pos.x;
+                positions[i * 3 + 1] = p.pos.y;
+                positions[i * 3 + 2] = p.pos.z;
+            });
+            const prev = trailGeometry.getAttribute('position');
+            if (prev) trailGeometry.deleteAttribute('position');
+            trailGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            trailGeometry.setDrawRange(0, trailParticles.length);
+            trailMaterial.opacity = 0.6 * Math.min(1, trailParticles.length / 20);
+            trailPoints.visible = true;
+        } else {
+            if (trailGeometry.getAttribute('position')) trailGeometry.deleteAttribute('position');
+            trailGeometry.setDrawRange(0, 0);
+            trailPoints.visible = false;
+        }
+
+        // Camera animation: follows the card smoothly
+        if (!reducedMotion && ot > 0.2 && ot < 1) {
+            const camT = Math.max(0, (ot - 0.2) / 0.8);
+            const camEase = easeInOutQuart(camT);
+            
+            // Camera moves closer and up to follow card
+            camera.position.y = cameraInitial.position.y + camEase * 0.25;
+            camera.position.z = cameraInitial.position.z - camEase * 0.6;
+            
+            // Camera FOV zoom for dramatic effect
+            camera.fov = cameraInitial.fov - camEase * 6;
+            camera.updateProjectionMatrix();
+            
+            // Camera looks at card as it rises
+            state.cameraLookAt.y = cameraInitial.lookAt.y + camEase * 0.8;
+            camera.lookAt(state.cameraLookAt);
+        }
 
         if (visible) {
             renderer.render(scene, camera);
@@ -347,6 +454,8 @@ export function createThreeEnvelope({
         cardTexture?.dispose();
         card.geometry.dispose();
         card.material.dispose();
+        trailGeometry.dispose();
+        trailMaterial.dispose();
     }
 
     return {
