@@ -23,6 +23,7 @@
     align-items: center;
     padding: 0.5rem 1rem 1.75rem;
     width: min(100%, 380px);
+    max-width: 100%;
 }
 
 .envelope-dom-root {
@@ -780,6 +781,24 @@
 
     .wax-seal {
         animation: none;
+    }
+}
+
+@media (max-width: 380px) {
+    .envelope-stage {
+        padding: 0.5rem 0.5rem 1.75rem;
+    }
+
+    .envelope-dom-root {
+        width: min(320px, 88vw);
+    }
+
+    .envelope-canvas-host {
+        width: min(320px, 88vw);
+    }
+
+    .envelope-wrapper {
+        width: min(280px, 85vw);
     }
 }
 

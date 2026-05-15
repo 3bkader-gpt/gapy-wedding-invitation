@@ -105,7 +105,7 @@ export const invitationConfig = {
                 flowers: true,
                 shake: true,
                 particles: true,
-                sounds: false,
+                sounds: true,
                 smoothReveal: true,
                 sealMelt: true
             },
@@ -117,8 +117,8 @@ export const invitationConfig = {
                 welcomeMessage: true,
                 loading: true,
                 instructions: true,
-                clickSound: false,
-                music: false
+                clickSound: true,
+                music: true
             }
         }
     },
