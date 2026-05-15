@@ -11,8 +11,8 @@ export function createCountdown(targetIso) {
             const distance = targetMs - Date.now();
 
             if (distance < 0) {
+                el.classList.remove('timer-container');
                 el.innerHTML = '<p class="countdown-done">اليوم المنتظر!</p>';
-                el.style.maxWidth = '100%';
                 return;
             }
 

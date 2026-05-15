@@ -107,22 +107,25 @@
 
         <section class="section-countdown" aria-labelledby="countdown-title" data-aos="fade-up" data-aos-duration="1200">
             <h2 id="countdown-title" class="section-title">متبقي على الفرحة</h2>
-            <div id="countdown">
-                <div class="countdown-box">
-                    <span id="days" class="num">00</span>
-                    <span class="label">يوم</span>
+            <div id="countdown" class="timer-container" dir="rtl">
+                <div class="timer-unit">
+                    <span id="days" class="timer-number">00</span>
+                    <span class="timer-label">يوم</span>
                 </div>
-                <div class="countdown-box">
-                    <span id="hours" class="num">00</span>
-                    <span class="label">ساعة</span>
+                <span class="timer-sep" aria-hidden="true">:</span>
+                <div class="timer-unit">
+                    <span id="hours" class="timer-number">00</span>
+                    <span class="timer-label">ساعة</span>
                 </div>
-                <div class="countdown-box">
-                    <span id="minutes" class="num">00</span>
-                    <span class="label">دقيقة</span>
+                <span class="timer-sep" aria-hidden="true">:</span>
+                <div class="timer-unit">
+                    <span id="minutes" class="timer-number">00</span>
+                    <span class="timer-label">دقيقة</span>
                 </div>
-                <div class="countdown-box">
-                    <span id="seconds" class="num">00</span>
-                    <span class="label">ثانية</span>
+                <span class="timer-sep" aria-hidden="true">:</span>
+                <div class="timer-unit">
+                    <span id="seconds" class="timer-number">00</span>
+                    <span class="timer-label">ثانية</span>
                 </div>
             </div>
         </section>
