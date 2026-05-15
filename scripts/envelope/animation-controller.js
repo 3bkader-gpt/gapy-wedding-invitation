@@ -1,5 +1,6 @@
 import { isFeatureEnabled } from './config-helpers.js';
 import { prefersReducedMotion } from '../core/motion.js';
+import { createEnvelopeRevealAudio } from './envelope-audio.js';
 
 export function createAnimationController({
     envelopeConfig,
@@ -11,6 +12,18 @@ export function createAnimationController({
 }) {
     const reducedMotion = prefersReducedMotion();
     const timings = envelopeConfig.timings || {};
+    const audioCfg = envelopeConfig.audio;
+    const envelopeRevealAudio =
+        audioCfg?.enabled &&
+        audioCfg.revealPart1 &&
+        audioCfg.revealPart2
+            ? createEnvelopeRevealAudio({
+                  part1Url: audioCfg.revealPart1,
+                  part2Url: audioCfg.revealPart2,
+                  gapAfterPart1Ms: audioCfg.gapAfterPart1Ms ?? 1000
+              })
+            : null;
+
     const seal = document.getElementById('wax-seal');
     const scene = document.getElementById('envelope-scene');
     const invitationApp = document.getElementById('invitation-app');
@@ -41,6 +54,7 @@ export function createAnimationController({
     async function openInstant() {
         if (opened) return;
         opened = true;
+        envelopeRevealAudio?.startFromUserGesture();
         sceneUI?.hideInstructions();
         parallax?.disable();
         if (seal) {
@@ -54,6 +68,7 @@ export function createAnimationController({
     async function openAnimated() {
         if (opened) return;
         opened = true;
+        envelopeRevealAudio?.startFromUserGesture();
         sceneUI?.hideInstructions();
         parallax?.disable();
 

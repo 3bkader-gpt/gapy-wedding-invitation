@@ -69,6 +69,13 @@ export const invitationConfig = {
         storageKey: 'gapy_envelope_seen_v1',
         welcomeText: 'وصلتك دعوة...',
         renderer: 'dom',
+        /** Audio: files live in repo (Pages/GitHub = static CDN). No external host needed. */
+        audio: {
+            enabled: true,
+            revealPart1: 'assets/audio/envelope-reveal-1.mp3',
+            revealPart2: 'assets/audio/envelope-reveal-2.mp3',
+            gapAfterPart1Ms: 1000
+        },
         timings: {
             cardLift: 4500,
             fadeOut: 1500,
