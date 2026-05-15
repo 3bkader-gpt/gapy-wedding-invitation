@@ -1,0 +1,43 @@
+:root {
+    --gold: #bd9a5f;
+    --gold-dark: #a6844f;
+    --ink: #3d3d3d;
+    --ink-muted: #5c5c5c;
+    --page-bg: #faf8f5;
+    --glass: rgba(255, 255, 255, 0.88);
+    --glass-border: rgba(255, 255, 255, 0.9);
+    --space-page: 1rem;
+    --space-section: 2.75rem;
+    --touch-min: 2.75rem;
+    --safe-top: env(safe-area-inset-top, 0px);
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
+    --safe-inline: env(safe-area-inset-right, 0px);
+    --envelope-scene-bg: #1a1a24;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: 'Cairo', sans-serif;
+    background: var(--page-bg);
+    color: var(--ink);
+    line-height: 1.5;
+    overflow-x: hidden;
+}
+
+body.envelope-active {
+    overflow: hidden;
+}
+
+.font-amiri {
+    font-family: 'Amiri', serif;
+}

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>دعوة زفاف ندا وأحمد</title>
+    <meta name="description" content="دعوة ندا وأحمد — عقد القران يوم الجمعة 22 مايو وحفل الزفاف 5 يونيو 2026">
+    <meta name="theme-color" content="#bd9a5f">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles/tokens.css">
+    <link rel="stylesheet" href="styles/envelope.css">
+    <link rel="stylesheet" href="styles/invitation.css">
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js"
+        }
+    }
+    </script>
+</head>
+<body>
+
+    <div id="envelope-scene" aria-label="فتح الظرف">
+        <div id="envelope-loading" class="envelope-loading" aria-live="polite" aria-busy="true">
+            <div class="envelope-spinner" aria-hidden="true"></div>
+            <p class="envelope-loading-text font-amiri">جاري التحميل...</p>
+        </div>
+
+        <p id="envelope-welcome" class="envelope-welcome font-amiri" aria-live="polite"></p>
+
+        <p class="envelope-hint">اضغط على الختم لفتح الظرف</p>
+
+        <div id="envelope-instruction" class="envelope-instruction" aria-hidden="true">
+            <span class="instruction-arrow" aria-hidden="true">↓</span>
+            <span class="instruction-text">اضغط هنا</span>
+        </div>
+
+        <div class="envelope-stage">
+            <div class="envelope-ambient" aria-hidden="true"></div>
+            <div class="envelope-spotlight" aria-hidden="true"></div>
+
+            <div id="envelope-canvas-host" class="envelope-canvas-host" aria-hidden="true">
+                <canvas id="envelope-canvas"></canvas>
+            </div>
+            <div id="envelope-dom-root" class="envelope-dom-root">
+                <div id="envelope-wrapper" class="envelope-wrapper envelope-wrapper--dom">
+                    <div class="envelope-pattern" aria-hidden="true"></div>
+
+                    <div class="card-inside">
+                        <div class="card-inside-inner">
+                            <p class="card-eyebrow">دعوة زفاف</p>
+                            <h2 class="font-amiri">نــدا & أحمــد</h2>
+                        </div>
+                    </div>
+
+                    <div class="envelope-front" aria-hidden="true"></div>
+                    <div class="envelope-pocket-shade" aria-hidden="true"></div>
+
+                    <img class="envelope-flower envelope-flower--tl" src="assets/envelope/flowers.svg" width="24" height="24" alt="" />
+                    <img class="envelope-flower envelope-flower--tr" src="assets/envelope/flowers.svg" width="24" height="24" alt="" />
+                    <img class="envelope-flower envelope-flower--bl" src="assets/envelope/flowers.svg" width="24" height="24" alt="" />
+                    <img class="envelope-flower envelope-flower--br" src="assets/envelope/flowers.svg" width="24" height="24" alt="" />
+
+                    <div class="envelope-ribbon" aria-hidden="true"></div>
+
+                    <div class="envelope-flap">
+                        <div class="envelope-pattern envelope-pattern--flap" aria-hidden="true"></div>
+                    </div>
+
+                    <button type="button" id="wax-seal" class="wax-seal font-amiri" aria-label="فتح الظرف">ن</button>
+                </div>
+            </div>
+
+            <div id="envelope-card-anchor" class="envelope-card-anchor" aria-hidden="true"></div>
+        </div>
+
+    </div>
+
+    <main id="invitation-app">
+        <header class="hero-bg">
+            <div class="hero-stack">
+
+                <div id="hero-verse" class="glass-card" data-block="verse" data-aos="fade-up" data-aos-duration="1200">
+                    <p class="font-amiri">"وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً"</p>
+                </div>
+
+                <div class="gold-divider" aria-hidden="true"></div>
+
+                <div id="hero-names" class="glass-card" data-block="names" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="100">
+                    <h1 class="font-amiri">نــدا & أحمــد</h1>
+                </div>
+
+                <div class="gold-divider" aria-hidden="true"></div>
+
+                <div id="hero-invite" class="glass-card hero-invite" data-block="invite" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200">
+                    <p class="hero-invite-lead">نتشرف بدعوتكم لمشاركتنا فرحتنا</p>
+                    <p class="hero-invite-body">بحضور عقد القران وحفل الزفاف</p>
+                    <p class="hero-invite-date font-amiri">وذلك بمشيئة الله يوم الجمعة 22 مايو</p>
+                </div>
+
+            </div>
+        </header>
+
+        <section class="section-countdown" aria-labelledby="countdown-title" data-aos="fade-up" data-aos-duration="1200">
+            <h2 id="countdown-title" class="section-title">متبقي على الفرحة</h2>
+            <div id="countdown">
+                <div class="countdown-box">
+                    <span id="days" class="num">00</span>
+                    <span class="label">يوم</span>
+                </div>
+                <div class="countdown-box">
+                    <span id="hours" class="num">00</span>
+                    <span class="label">ساعة</span>
+                </div>
+                <div class="countdown-box">
+                    <span id="minutes" class="num">00</span>
+                    <span class="label">دقيقة</span>
+                </div>
+                <div class="countdown-box">
+                    <span id="seconds" class="num">00</span>
+                    <span class="label">ثانية</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-details" aria-labelledby="details-title" data-aos="fade-up" data-aos-duration="1200">
+            <h2 id="details-title" class="section-title" style="text-align: center;">مواعيد الفرحة</h2>
+
+            <div class="events-timeline" aria-label="جدول مواعيد عقد القران وحفل الزفاف">
+                <div class="timeline-rail" aria-hidden="true">
+                    <span class="timeline-line"></span>
+                    <span class="timeline-line-progress"></span>
+                    <span class="timeline-node timeline-node--first"></span>
+                    <span class="timeline-gap" data-timeline-gap>١٤ يومًا بين الفرحتين</span>
+                    <span class="timeline-node timeline-node--second"></span>
+                </div>
+
+                <article class="timeline-event timeline-event--nikah" data-aos="fade-up" data-aos-duration="900" data-aos-delay="0">
+                    <div class="timeline-event__inner">
+                        <div class="timeline-top">
+                            <span class="timeline-step" aria-hidden="true">١</span>
+                            <div class="timeline-date-card">
+                                <span class="date-day font-amiri">22</span>
+                                <span class="date-sep">/</span>
+                                <span class="date-month-num">5</span>
+                                <span class="date-month-name">مايو</span>
+                                <span class="date-year">2026</span>
+                            </div>
+                        </div>
+                        <div class="detail-card">
+                            <p class="badge">الظهر</p>
+                        <h3>عقد القران</h3>
+                        <p class="meta">عقب صلاة العصر مباشرة</p>
+                        <p class="place">مسجد أبو سليمة</p>
+                        <a
+                            href="https://maps.app.goo.gl/cXompv7oYnnhCZgY7"
+                            data-map="mosque"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="btn-map"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                            عرض على الخريطة
+                        </a>
+                        <button type="button" class="btn-calendar" data-calendar="nikah">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                            إضافة إلى تقويم جوجل
+                        </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="timeline-event timeline-event--wedding" data-aos="fade-up" data-aos-duration="900" data-aos-delay="120">
+                    <div class="timeline-event__inner">
+                        <div class="timeline-top">
+                            <span class="timeline-step" aria-hidden="true">٢</span>
+                            <div class="timeline-date-card timeline-date-card--wedding">
+                                <span class="date-day font-amiri">5</span>
+                                <span class="date-sep">/</span>
+                                <span class="date-month-num">6</span>
+                                <span class="date-month-name">يونيو</span>
+                                <span class="date-year">2026</span>
+                            </div>
+                        </div>
+                        <div class="detail-card">
+                            <p class="badge">المساء</p>
+                        <h3>حفل الزفاف</h3>
+                        <p class="meta">مساءً</p>
+                        <p class="place">
+                            قاعة لاروز، منتجع أفلاطون
+                            <span class="place-note">(جوي سيتي سابقاً) — شرق النيل</span>
+                        </p>
+                        <a
+                            href="https://maps.app.goo.gl/fc2zd8q1dpbjndmJ6"
+                            data-map="hall"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="btn-map"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                            عرض على الخريطة
+                        </a>
+                        <button type="button" class="btn-calendar" data-calendar="wedding">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                            إضافة إلى تقويم جوجل
+                        </button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <div class="calendar-cta" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200">
+                <p>احفظ الموعدين في تقويمك</p>
+                <button type="button" class="btn-calendar-day" data-calendar="full">
+                    📅 إضافة الموعدين إلى تقويم جوجل
+                </button>
+            </div>
+        </section>
+
+        <footer class="site-footer" data-aos="fade-up" data-aos-duration="1200">
+            <p class="line-main">حضوركم يشرفنا ويزيد من فرحتنا</p>
+            <p class="line-sub">العاقبة عندكم في المسرات</p>
+            <p class="line-sign">ندا & أحمد</p>
+        </footer>
+    </main>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js" defer></script>
+    <script type="module" src="scripts/main.js"></script>
+</body>
+</html>
