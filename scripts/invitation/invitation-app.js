@@ -14,16 +14,12 @@ export function createInvitationApp(config) {
             if (!button) return;
 
             const action = button.getAttribute('data-calendar');
-            if (action === 'nikah') calendar.openNikah();
-            else if (action === 'wedding') calendar.openWedding();
-            else if (action === 'full') calendar.openFullDay();
+            if (action === 'wedding') calendar.openWedding();
         });
     }
 
     function applyMapLinks(root) {
-        const mosqueLink = root.querySelector('[data-map="mosque"]');
         const hallLink = root.querySelector('[data-map="hall"]');
-        if (mosqueLink) mosqueLink.href = config.maps.mosque;
         if (hallLink) hallLink.href = config.maps.hall;
     }
 

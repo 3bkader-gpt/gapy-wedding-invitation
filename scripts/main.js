@@ -23,6 +23,16 @@ function bootstrap() {
             onInvitationReady();
         });
     }
+
+    // تشغيل الصوت بعد 2 ثانية بالضبط من فتح الموقع
+    setTimeout(async () => {
+        try {
+            const audio = new Audio('assets/audio/envelope-reveal-1.mp3');
+            await audio.play();
+        } catch (err) {
+            console.warn('⚠️ تعذّر تشغيل الصوت - سياسة المتصفح:', err.message);
+        }
+    }, 2000);
 }
 
 if (document.readyState === 'loading') {

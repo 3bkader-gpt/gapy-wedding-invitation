@@ -15,14 +15,8 @@ function openGoogleCalendar({ title, start, end, location, details }) {
 
 export function createCalendarService(calendarConfig) {
     return {
-        openNikah() {
-            openGoogleCalendar(calendarConfig.nikah);
-        },
         openWedding() {
             openGoogleCalendar(calendarConfig.wedding);
-        },
-        openFullDay() {
-            openGoogleCalendar(calendarConfig.fullDay);
         }
     };
 }

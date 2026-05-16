@@ -3,24 +3,8 @@ export const invitationConfig = {
         display: 'نــدا & أحمــد',
         sealLetter: 'ن'
     },
-    countdownTarget: '2026-05-22T16:00:00',
+    countdownTarget: '2026-06-05T18:00:00',
     events: {
-        daysBetween: 14,
-        nikah: {
-            title: 'عقد القران',
-            badge: 'الظهر',
-            date: {
-                day: 22,
-                month: 5,
-                monthName: 'مايو',
-                year: 2026,
-                display: '22 مايو 2026'
-            },
-            timeNote: 'عقب صلاة العصر مباشرة',
-            place: 'مسجد أبو سليمة',
-            mapKey: 'mosque',
-            calendarKey: 'nikah'
-        },
         wedding: {
             title: 'حفل الزفاف',
             badge: 'المساء',
@@ -39,30 +23,15 @@ export const invitationConfig = {
         }
     },
     maps: {
-        mosque: 'https://maps.app.goo.gl/cXompv7oYnnhCZgY7',
         hall: 'https://maps.app.goo.gl/fc2zd8q1dpbjndmJ6'
     },
     calendar: {
-        nikah: {
-            title: 'عقد قران ندا وأحمد',
-            start: '20260522T140000Z',
-            end: '20260522T150000Z',
-            location: 'مسجد أبو سليمة، أسوان',
-            details: 'عقب صلاة العصر مباشرة — دعوة زفاف ندا وأحمد'
-        },
         wedding: {
             title: 'حفل زفاف ندا وأحمد',
             start: '20260605T180000Z',
             end: '20260605T220000Z',
             location: 'قاعة لاروز، منتجع أفلاطون شرق النيل، أسوان',
             details: 'حفل الزفاف — 5 يونيو 2026 — دعوة ندا وأحمد'
-        },
-        fullDay: {
-            title: 'مواعيد فرحة ندا وأحمد',
-            start: '20260522T130000Z',
-            end: '20260605T220000Z',
-            location: 'أسوان — مسجد أبو سليمة ثم قاعة لاروز',
-            details: 'عقد القران 22 مايو — حفل الزفاف 5 يونيو — دعوة ندا وأحمد'
         }
     },
     envelope: {
