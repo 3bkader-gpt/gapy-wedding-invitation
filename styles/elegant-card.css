@@ -1,5 +1,5 @@
 /* ══════════════════════════════════════════════════════════════════════════════
-   Elegant Event Card - Creative Single Card Design
+   Elegant Event Card - Creative Single Card Design (Performance Optimized)
    ══════════════════════════════════════════════════════════════════════════════ */
 
 .elegant-event-card {
@@ -15,18 +15,22 @@
         0 20px 60px rgba(61, 45, 30, 0.12);
     overflow: hidden;
     transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
+    will-change: transform;
+    /* Performance: use GPU acceleration */
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
-@media (hover: hover) {
+@media (hover: hover) and (pointer: fine) {
     .elegant-event-card:hover {
-        transform: translateY(-6px);
+        transform: translateY(-6px) translateZ(0);
         box-shadow:
             0 2px 0 rgba(189, 154, 95, 0.2),
             0 28px 80px rgba(61, 45, 30, 0.16);
     }
 }
 
-/* Ornaments */
+/* Ornaments - Simplified for mobile */
 .event-ornament {
     position: absolute;
     left: 50%;
@@ -40,6 +44,14 @@
     background-position: center;
     pointer-events: none;
     opacity: 0.7;
+    /* Performance: disable on mobile */
+    display: none;
+}
+
+@media (min-width: 640px) {
+    .event-ornament {
+        display: block;
+    }
 }
 
 .event-ornament--top {
@@ -51,12 +63,12 @@
     transform: translateX(-50%) scaleY(-1);
 }
 
-/* Date Badge */
+/* Date Badge - Optimized */
 .event-date-badge {
     position: absolute;
     top: -1.25rem;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%) translateZ(0);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -70,6 +82,9 @@
         0 0 0 2px rgba(189, 154, 95, 0.3),
         0 8px 24px rgba(61, 45, 30, 0.2);
     z-index: 2;
+    /* Performance */
+    will-change: transform;
+    backface-visibility: hidden;
 }
 
 .date-number {
@@ -113,7 +128,7 @@
     color: var(--ink-muted);
 }
 
-/* Divider */
+/* Divider - Simplified */
 .event-divider {
     display: flex;
     align-items: center;
@@ -141,7 +156,7 @@
     opacity: 0.7;
 }
 
-/* Event Info */
+/* Event Info - Optimized */
 .event-info {
     display: flex;
     flex-direction: column;
@@ -151,6 +166,8 @@
     background: rgba(189, 154, 95, 0.04);
     border-radius: 0.875rem;
     border: 1px solid rgba(189, 154, 95, 0.15);
+    /* Performance */
+    transform: translateZ(0);
 }
 
 .info-item {
@@ -182,7 +199,7 @@
     margin-top: 0.25rem;
 }
 
-/* Actions */
+/* Actions - Optimized */
 .event-actions {
     display: flex;
     flex-direction: column;
@@ -205,9 +222,13 @@
     border-radius: 9999px;
     cursor: pointer;
     text-decoration: none;
-    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
+    /* Performance */
+    will-change: transform;
+    backface-visibility: hidden;
+    transform: translateZ(0);
 }
 
 .btn-elegant svg {
@@ -223,7 +244,7 @@
 }
 
 .btn-elegant--map:active {
-    transform: scale(0.97);
+    transform: scale(0.97) translateZ(0);
 }
 
 .btn-elegant--calendar {
@@ -233,27 +254,30 @@
 }
 
 .btn-elegant--calendar:active {
-    transform: scale(0.97);
+    transform: scale(0.97) translateZ(0);
 }
 
-@media (hover: hover) {
+/* Hover effects only on desktop */
+@media (hover: hover) and (pointer: fine) {
     .btn-elegant--map:hover {
         background: linear-gradient(135deg, var(--gold-dark) 0%, #8b6b22 100%);
         box-shadow: 0 6px 20px rgba(189, 154, 95, 0.45);
-        transform: translateY(-2px);
+        transform: translateY(-2px) translateZ(0);
     }
 
     .btn-elegant--calendar:hover {
         background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
         box-shadow: 0 6px 20px rgba(45, 45, 45, 0.4);
-        transform: translateY(-2px);
+        transform: translateY(-2px) translateZ(0);
     }
 }
 
-/* Responsive */
+/* Responsive - Mobile First */
 @media (max-width: 639px) {
     .elegant-event-card {
         padding: 2rem 1.5rem;
+        /* Reduce shadow complexity on mobile */
+        box-shadow: 0 2px 0 rgba(189, 154, 95, 0.15), 0 12px 36px rgba(61, 45, 30, 0.1);
     }
 
     .event-date-badge {
@@ -289,17 +313,23 @@
     .btn-elegant {
         font-size: 0.95rem;
         padding: 0.75rem 1.25rem;
+        /* Simpler transition on mobile */
+        transition: transform 0.15s ease;
     }
 }
 
 @media (max-width: 374px) {
     .elegant-event-card {
         padding: 1.75rem 1.25rem;
+        /* Minimal shadow on small screens */
+        box-shadow: 0 1px 0 rgba(189, 154, 95, 0.12), 0 8px 24px rgba(61, 45, 30, 0.08);
     }
 
     .event-date-badge {
         width: 4.25rem;
         height: 4.25rem;
+        /* Simpler shadow */
+        box-shadow: 0 0 0 2px rgba(189, 154, 95, 0.25), 0 6px 16px rgba(61, 45, 30, 0.15);
     }
 
     .date-number {
@@ -313,6 +343,15 @@
     .event-info {
         padding: 1rem;
     }
+
+    .btn-elegant {
+        /* Remove gradient on very small screens for better performance */
+        background: var(--gold);
+    }
+
+    .btn-elegant--calendar {
+        background: var(--ink);
+    }
 }
 
 @media (min-width: 640px) {
@@ -325,10 +364,13 @@
     }
 }
 
+/* Reduce motion for accessibility and performance */
 @media (prefers-reduced-motion: reduce) {
     .elegant-event-card,
-    .btn-elegant {
+    .btn-elegant,
+    .event-date-badge {
         transition: none;
+        animation: none;
     }
 
     .elegant-event-card:hover {
@@ -340,3 +382,16 @@
         transform: none;
     }
 }
+
+/* Performance: Disable expensive effects on low-end devices */
+@media (max-width: 639px) and (prefers-reduced-motion: no-preference) {
+    .elegant-event-card {
+        /* Disable hover transform on mobile */
+        transition: box-shadow 0.3s ease;
+    }
+    
+    .elegant-event-card:hover {
+        transform: none;
+    }
+}
+
