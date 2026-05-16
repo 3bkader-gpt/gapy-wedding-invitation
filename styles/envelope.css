@@ -663,21 +663,23 @@
 
 .envelope-wrapper--dom.is-smooth-reveal.is-open .card-inside,
 #envelope-wrapper.envelope-wrapper--dom.is-smooth-reveal.is-open .card-inside {
-    transition-property: transform, box-shadow;
+    transition-property: transform, box-shadow, filter;
     transition-delay: var(--env-card-delay-ms, 250ms);
     transition-duration: var(--env-card-duration-ms, 2400ms);
-    transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    transform: translate3d(0, -118px, 3px) scale(1.12);
+    /* استخدام منحنى ناعم جداً بدلاً من المنحنى القديم الذي كان يسبب قفزة (Bounce) */
+    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+    /* إضافة ميلان خفيف (rotate) ليعطي إحساساً طبيعياً بأن الورقة تُسحب باليد */
+    transform: translate3d(0, -120px, 5px) scale(1.12) rotate(-1.5deg);
     box-shadow:
         inset 0 0 12px rgba(0, 0, 0, 0.05),
-        0 18px 36px rgba(0, 0, 0, 0.24);
+        0 22px 40px rgba(0, 0, 0, 0.28);
     z-index: 6;
 }
 
 #envelope-wrapper.is-open:not(.envelope-wrapper--dom) .card-inside,
 .envelope-wrapper.is-open:not(.envelope-wrapper--dom) .card-inside {
     animation: none;
-    transform: translateY(-130px) scale(1.08);
+    transform: translateY(-130px) scale(1.08) rotate(-1.5deg);
     z-index: 6;
 }
 
