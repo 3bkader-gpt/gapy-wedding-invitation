@@ -1,0 +1,342 @@
+/* ══════════════════════════════════════════════════════════════════════════════
+   Elegant Event Card - Creative Single Card Design
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+.elegant-event-card {
+    position: relative;
+    max-width: min(32rem, 100%);
+    margin-inline: auto;
+    padding: 2.5rem 2rem;
+    background: linear-gradient(165deg, #fffefb 0%, #fff 45%, #faf8f6 100%);
+    border-radius: 1.5rem;
+    border: 2px solid rgba(189, 154, 95, 0.3);
+    box-shadow:
+        0 2px 0 rgba(189, 154, 95, 0.15),
+        0 20px 60px rgba(61, 45, 30, 0.12);
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
+}
+
+@media (hover: hover) {
+    .elegant-event-card:hover {
+        transform: translateY(-6px);
+        box-shadow:
+            0 2px 0 rgba(189, 154, 95, 0.2),
+            0 28px 80px rgba(61, 45, 30, 0.16);
+    }
+}
+
+/* Ornaments */
+.event-ornament {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    max-width: 18rem;
+    height: 3rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 40'%3E%3Cpath d='M10 20 Q 50 10, 100 20 T 190 20' stroke='%23bd9a5f' stroke-width='1.5' fill='none' opacity='0.4'/%3E%3Ccircle cx='100' cy='20' r='3' fill='%23bd9a5f' opacity='0.6'/%3E%3Ccircle cx='50' cy='15' r='2' fill='%23bd9a5f' opacity='0.5'/%3E%3Ccircle cx='150' cy='15' r='2' fill='%23bd9a5f' opacity='0.5'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.event-ornament--top {
+    top: 0.5rem;
+}
+
+.event-ornament--bottom {
+    bottom: 0.5rem;
+    transform: translateX(-50%) scaleY(-1);
+}
+
+/* Date Badge */
+.event-date-badge {
+    position: absolute;
+    top: -1.25rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 5.5rem;
+    height: 5.5rem;
+    background: radial-gradient(circle at 35% 30%, #fff8e8, var(--gold) 52%, var(--gold-dark));
+    border: 4px solid #fff;
+    border-radius: 50%;
+    box-shadow:
+        0 0 0 2px rgba(189, 154, 95, 0.3),
+        0 8px 24px rgba(61, 45, 30, 0.2);
+    z-index: 2;
+}
+
+.date-number {
+    font-size: 2.25rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.date-month {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.95);
+    margin-top: 0.15rem;
+}
+
+.date-year {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* Content */
+.event-content {
+    margin-top: 2.5rem;
+    text-align: center;
+}
+
+.event-title {
+    margin: 0 0 0.5rem;
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1.2;
+}
+
+.event-subtitle {
+    margin: 0 0 1.5rem;
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--ink-muted);
+}
+
+/* Divider */
+.event-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1.5rem 0;
+    gap: 1rem;
+}
+
+.event-divider::before,
+.event-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(
+        to right,
+        transparent,
+        rgba(189, 154, 95, 0.3) 50%,
+        transparent
+    );
+}
+
+.divider-icon {
+    font-size: 0.85rem;
+    color: var(--gold);
+    opacity: 0.7;
+}
+
+/* Event Info */
+.event-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    padding: 1.25rem;
+    background: rgba(189, 154, 95, 0.04);
+    border-radius: 0.875rem;
+    border: 1px solid rgba(189, 154, 95, 0.15);
+}
+
+.info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    text-align: right;
+}
+
+.info-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+.info-text {
+    flex: 1;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.5;
+}
+
+.info-text small {
+    display: block;
+    font-size: 0.88rem;
+    font-weight: 400;
+    color: var(--ink-muted);
+    margin-top: 0.25rem;
+}
+
+/* Actions */
+.event-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1.75rem;
+}
+
+.btn-elegant {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    min-height: var(--touch-min);
+    padding: 0.85rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: inherit;
+    border: none;
+    border-radius: 9999px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+.btn-elegant svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    flex-shrink: 0;
+}
+
+.btn-elegant--map {
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(189, 154, 95, 0.35);
+}
+
+.btn-elegant--map:active {
+    transform: scale(0.97);
+}
+
+.btn-elegant--calendar {
+    background: linear-gradient(135deg, var(--ink) 0%, #2a2a2a 100%);
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(45, 45, 45, 0.3);
+}
+
+.btn-elegant--calendar:active {
+    transform: scale(0.97);
+}
+
+@media (hover: hover) {
+    .btn-elegant--map:hover {
+        background: linear-gradient(135deg, var(--gold-dark) 0%, #8b6b22 100%);
+        box-shadow: 0 6px 20px rgba(189, 154, 95, 0.45);
+        transform: translateY(-2px);
+    }
+
+    .btn-elegant--calendar:hover {
+        background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+        box-shadow: 0 6px 20px rgba(45, 45, 45, 0.4);
+        transform: translateY(-2px);
+    }
+}
+
+/* Responsive */
+@media (max-width: 639px) {
+    .elegant-event-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .event-date-badge {
+        width: 4.75rem;
+        height: 4.75rem;
+        top: -1rem;
+    }
+
+    .date-number {
+        font-size: 1.85rem;
+    }
+
+    .date-month {
+        font-size: 0.75rem;
+    }
+
+    .date-year {
+        font-size: 0.65rem;
+    }
+
+    .event-title {
+        font-size: 1.85rem;
+    }
+
+    .event-subtitle {
+        font-size: 0.95rem;
+    }
+
+    .info-text {
+        font-size: 0.92rem;
+    }
+
+    .btn-elegant {
+        font-size: 0.95rem;
+        padding: 0.75rem 1.25rem;
+    }
+}
+
+@media (max-width: 374px) {
+    .elegant-event-card {
+        padding: 1.75rem 1.25rem;
+    }
+
+    .event-date-badge {
+        width: 4.25rem;
+        height: 4.25rem;
+    }
+
+    .date-number {
+        font-size: 1.65rem;
+    }
+
+    .event-title {
+        font-size: 1.65rem;
+    }
+
+    .event-info {
+        padding: 1rem;
+    }
+}
+
+@media (min-width: 640px) {
+    .event-actions {
+        flex-direction: row;
+    }
+
+    .btn-elegant {
+        flex: 1;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .elegant-event-card,
+    .btn-elegant {
+        transition: none;
+    }
+
+    .elegant-event-card:hover {
+        transform: none;
+    }
+
+    .btn-elegant--map:hover,
+    .btn-elegant--calendar:hover {
+        transform: none;
+    }
+}

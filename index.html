@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="styles/tokens.css">
     <link rel="stylesheet" href="styles/envelope.css">
     <link rel="stylesheet" href="styles/invitation.css">
+    <link rel="stylesheet" href="styles/elegant-card.css">
     <link rel="preload" href="assets/audio/envelope-reveal-1.mp3" as="audio" type="audio/mpeg">
     <link rel="preload" href="assets/audio/envelope-reveal-2.mp3" as="audio" type="audio/mpeg">
     <script type="importmap">
@@ -133,59 +134,53 @@
         </section>
 
         <section class="section-details" aria-labelledby="details-title" data-aos="fade-up" data-aos-duration="1200">
-            <h2 id="details-title" class="section-title" style="text-align: center;">موعد الزفاف</h2>
+            <h2 id="details-title" class="section-title">موعد الفرحة</h2>
 
-            <div class="events-timeline" aria-label="موعد حفل الزفاف">
-                <div class="timeline-rail" aria-hidden="true">
-                    <span class="timeline-line"></span>
-                    <span class="timeline-line-progress"></span>
-                    <span class="timeline-node timeline-node--first"></span>
+            <div class="elegant-event-card" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="100">
+                <div class="event-ornament event-ornament--top" aria-hidden="true"></div>
+                <div class="event-ornament event-ornament--bottom" aria-hidden="true"></div>
+                
+                <div class="event-date-badge">
+                    <span class="date-number font-amiri">5</span>
+                    <span class="date-month">يونيو</span>
+                    <span class="date-year">2026</span>
                 </div>
 
-                <article class="timeline-event timeline-event--wedding" data-aos="fade-up" data-aos-duration="900" data-aos-delay="120">
-                    <div class="timeline-event__inner">
-                        <div class="timeline-top">
-                            <span class="timeline-step" aria-hidden="true">١</span>
-                            <div class="timeline-date-card timeline-date-card--wedding">
-                                <span class="date-day font-amiri">5</span>
-                                <span class="date-sep">/</span>
-                                <span class="date-month-num">6</span>
-                                <span class="date-month-name">يونيو</span>
-                                <span class="date-year">2026</span>
-                            </div>
+                <div class="event-content">
+                    <h3 class="event-title font-amiri">حفل الزفاف</h3>
+                    <p class="event-subtitle">يوم الجمعة المبارك</p>
+                    
+                    <div class="event-divider" aria-hidden="true">
+                        <span class="divider-icon">❖</span>
+                    </div>
+
+                    <div class="event-info">
+                        <div class="info-item">
+                            <span class="info-icon">🕐</span>
+                            <span class="info-text">مساءً</span>
                         </div>
-                        <div class="detail-card">
-                            <p class="badge">المساء</p>
-                        <h3>حفل الزفاف</h3>
-                        <p class="meta">مساءً</p>
-                        <p class="place">
-                            قاعة لاروز، منتجع أفلاطون
-                            <span class="place-note">(جوي سيتي سابقاً) — شرق النيل</span>
-                        </p>
-                        <a
-                            href="https://maps.app.goo.gl/fc2zd8q1dpbjndmJ6"
-                            data-map="hall"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="btn-map"
-                        >
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                            عرض على الخريطة
-                        </a>
-                        <button type="button" class="btn-calendar" data-calendar="wedding">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                            إضافة إلى تقويم جوجل
-                        </button>
+                        <div class="info-item">
+                            <span class="info-icon">📍</span>
+                            <span class="info-text">قاعة لاروز، منتجع أفلاطون<br><small>(جوي سيتي سابقاً) — شرق النيل</small></span>
                         </div>
                     </div>
-                </article>
-            </div>
 
-            <div class="calendar-cta" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200">
-                <p>احفظ الموعد في تقويمك</p>
-                <button type="button" class="btn-calendar-day" data-calendar="wedding">
-                    📅 إضافة الموعد إلى تقويم جوجل
-                </button>
+                    <div class="event-actions">
+                        <a
+                            href="https://maps.app.goo.gl/fc2zd8q1dpbjndmJ6"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="btn-elegant btn-elegant--map"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                            الموقع على الخريطة
+                        </a>
+                        <button type="button" class="btn-elegant btn-elegant--calendar" data-calendar="wedding">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                            إضافة للتقويم
+                        </button>
+                    </div>
+                </div>
             </div>
         </section>
 
